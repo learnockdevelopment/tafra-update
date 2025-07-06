@@ -1,0 +1,99 @@
+
+[
+  {
+    "id": 1,
+    "title": "مئة عام من العزلة",
+    "author": "جابرييل جارسيا ماركيز",
+    "price": 45.00,
+    "originalPrice": 50.00,
+    "cover": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&h=400&fit=crop",
+    "description": "رواية خيال واقعي تحكي قصة عائلة بوينديا عبر سبعة أجيال",
+    "category": "أدب عالمي",
+    "rating": 4.8,
+    "inStock": true
+  },
+  {
+    "id": 2,
+    "title": "مدن الملح",
+    "author": "عبد الرحمن منيف",
+    "price": 38.00,
+    "originalPrice": 42.00,
+    "cover": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=400&fit=crop",
+    "description": "خماسية روائية تتناول التحولات الاجتماعية في الجزيرة العربية",
+    "category": "أدب عربي",
+    "rating": 4.6,
+    "inStock": true
+  },
+  {
+    "id": 3,
+    "title": "الأسود يليق بك",
+    "author": "أحلام مستغانمي",
+    "price": 32.00,
+    "originalPrice": 35.00,
+    "cover": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop",
+    "description": "رواية رومانسية تدور أحداثها بين الجزائر وباريس",
+    "category": "رواية عربية",
+    "rating": 4.4,
+    "inStock": true
+  },
+  {
+    "id": 4,
+    "title": "الخيميائي",
+    "author": "باولو كويلو",
+    "price": 28.00,
+    "originalPrice": 30.00,
+    "cover": "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=300&h=400&fit=crop",
+    "description": "قصة راعي أندلسي يبحث عن كنز في أهرامات مصر",
+    "category": "أدب فلسفي",
+    "rating": 4.7,
+    "inStock": true
+  },
+  {
+    "id": 5,
+    "title": "شرق المتوسط",
+    "author": "عبد الرحمن منيف",
+    "price": 35.00,
+    "originalPrice": 40.00,
+    "cover": "https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?w=300&h=400&fit=crop",
+    "description": "رواية تتناول قضايا الهوية والانتماء في العالم العربي",
+    "category": "أدب عربي",
+    "rating": 4.5,
+    "inStock": false
+  },
+  {
+    "id": 6,
+    "title": "حديث الصباح والمساء",
+    "author": "نجيب محفوظ",
+    "price": 25.00,
+    "originalPrice": 28.00,
+    "cover": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=300&h=400&fit=crop",
+    "description": "مجموعة قصص قصيرة من أعمال نوبل للآداب",
+    "category": "قصص قصيرة",
+    "rating": 4.9,
+    "inStock": true
+  },
+  {
+    "id": 7,
+    "title": "البحث عن وليد مسعود",
+    "author": "جبرا إبراهيم جبرا",
+    "price": 42.00,
+    "originalPrice": 45.00,
+    "cover": "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=300&h=400&fit=crop",
+    "description": "رواية تجريبية تبحث في تعقيدات الهوية الفلسطينية",
+    "category": "أدب عربي",
+    "rating": 4.3,
+    "inStock": true
+  },
+  {
+    "id": 8,
+    "title": "عصافير النيل",
+    "author": "إبراهيم أصلان",
+    "price": 30.00,
+    "originalPrice": 33.00,
+    "cover": "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=300&h=400&fit=crop",
+    "description": "رواية تصور الحياة الشعبية في أحياء القاهرة القديمة",
+    "category": "أدب مصري",
+    "rating": 4.2,
+    "inStock": true
+  }
+]
