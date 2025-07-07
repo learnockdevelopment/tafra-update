@@ -7,14 +7,14 @@ const Events = () => {
             <Header fixed={false} active="events" />
             <section style={{ paddingBlock: 80 }} className="container">
                 <h2
-                    style={{ fontSize: 40, color: "#096d71", marginBottom: 10 }}
-                    className="text-center font-bold"
+                    style={{ color: "#096d71", marginBottom: 10 }}
+                    className="text-center font-bold md:text-4xl text-2xl"
                 >
                     أحدث فاعليات ومعارض الدار
                 </h2>
                 <p
-                    className="text-center"
-                    style={{ color: "#777777", fontSize: 24, marginBottom: 20 }}
+                    className="text-center md:text-2xl text-xl"
+                    style={{ color: "#777777", marginBottom: 20 }}
                 >
                     شاركت دار طفرة للنشر والتوزيع في العديد من الفاعليات
                     والمعارض في داخل مصر وخارجها …..
@@ -44,16 +44,17 @@ const Events = () => {
                         <h3
                             style={{
                                 color: "#1b1b1b",
-                                fontSize: 32,
+
                                 fontWeight: 600,
                                 marginBottom: 16,
                             }}
+                            className="md:text-2xl text-lg"
                         >
                             معرض الرياض الدولي للكتاب 2024
                         </h3>
                         <p
-                            className=""
-                            style={{ color: "#777777", fontSize: 20 }}
+                            className="md:text-lg text-base"
+                            style={{ color: "#777777" }}
                         >
                             شاركت دار طفرة للنشر والتوزيع في العديد من الفاعليات
                             والمعارض في داخل مصر وخارجها …..
@@ -83,16 +84,17 @@ const Events = () => {
                         <h3
                             style={{
                                 color: "#1b1b1b",
-                                fontSize: 32,
+
                                 fontWeight: 600,
                                 marginBottom: 16,
                             }}
+                            className="md:text-2xl text-lg"
                         >
                             معرض القاهرة الدولي للكتاب 2024
                         </h3>
                         <p
-                            className=""
-                            style={{ color: "#777777", fontSize: 20 }}
+                            className="md:text-lg text-base"
+                            style={{ color: "#777777" }}
                         >
                             من فعاليات دار طفرة للنشر والتوزيع إحدى شركات مجموعة
                             MRG في معرض القاهرة الدولي للكتاب
@@ -122,17 +124,18 @@ const Events = () => {
                         <h3
                             style={{
                                 color: "#1b1b1b",
-                                fontSize: 32,
+
                                 fontWeight: 600,
                                 marginBottom: 16,
                             }}
+                            className="md:text-2xl text-lg"
                         >
                             مناقشة كتاب سنغافورة بناء الدولة وإعداد الإنسان
                             والمجتمع
                         </h3>
                         <p
-                            className=""
-                            style={{ color: "#777777", fontSize: 20 }}
+                            className="md:text-lg text-base"
+                            style={{ color: "#777777" }}
                         >
                             بحضور سيادة السفير “دومينيك جوه” سفير دولة سنغافورة
                             بالقاهرة ووفد من السفارة السنغافورية تناول اللقاء
@@ -164,16 +167,17 @@ const Events = () => {
                         <h3
                             style={{
                                 color: "#1b1b1b",
-                                fontSize: 32,
+
                                 fontWeight: 600,
                                 marginBottom: 16,
                             }}
+                            className="md:text-2xl text-lg"
                         >
                             التربية الإعلامية وتضليل الجماهير
                         </h3>
                         <p
-                            className=""
-                            style={{ color: "#777777", fontSize: 20 }}
+                            className="md:text-lg text-base"
+                            style={{ color: "#777777" }}
                         >
                             مع الإعلامي اللامع د.جمال الشاعر أثناء استضافته في
                             صالون طفرة الثقافي في حوار لمناقشة موضوع (التربية

@@ -1,118 +1,118 @@
-
-import React from 'react';
+import React from "react";
 
 const FeaturedSections: React.FC = () => {
-  return (
-    <>
-      <section className="container lg:p-5 p-2" style={{ marginTop: "80px" }}>
-        <div
-          style={{
-            border: "1px solid #096d7154",
-            padding: "40px",
-            borderRadius: "20px",
-            display: "flex",
-            gap: "50px",
-            alignItems: "center",
-            boxShadow: '0px 0px 14.5px 2px rgba(203, 203, 203, 0.25)'
-          }}
-          className="lg:flex-row flex-col"
-        >
-          <div>
-            <h2
-              style={{
-                color: "#096d71",
-                marginBottom: "16px"
-              }}
-              className='font-bold md:text-4xl text-2xl'
+    return (
+        <>
+            <section
+                className="container lg:p-5 p-2"
+                style={{ marginTop: "80px" }}
             >
-              أهداف الدار
-            </h2>
-            <p className="text-black md:text-xl text-bace" style={{ lineHeight: '40px' }}>
-              – اطلاق المهارات الإبداعية ورعاية المواهب الأدبية
-              الفريدة في مصر والعالم العربي وتشجيع جميع المهتمين من كل
-              الأعمار للمشاركة.<br />
-              – نشر الأعمال الأدبية الراقية ذات الجودة العالية والناتج
-              المعرفي والثقافي الخلاق .<br />
-              – تسليط الضوء على الرموز الأدبية والأعمال التراثية
-              القديمة وتقديمها بطريقة تناسب الجيل الحالي ، والاحتفاء
-              باللغة والثقافة والتاريخ المصري والعربي.<br />
-              – نقل المعرفة والمساهمة في حركة الترجمة للكتب والإبداعات
-              العلمية والفكرية من وإلى العربية .
-            </p>
-          </div>
-          <div>
-            <img
-              src="/assets/images/goles.jpg"
-              className="w-lg-auto w-75 mx-auto d-block"
-            />
-          </div>
-        </div>
-      </section>
+                <div
+                    style={{
+                        border: "1px solid #096d7154",
+                        padding: "40px",
+                        borderRadius: "20px",
+                        display: "flex",
+                        gap: "50px",
+                        alignItems: "center",
+                        boxShadow:
+                            "0px 0px 14.5px 2px rgba(203, 203, 203, 0.25)",
+                    }}
+                    className="lg:flex-row flex-col"
+                >
+                    <div>
+                        <h2
+                            style={{
+                                color: "#096d71",
+                                marginBottom: "16px",
+                            }}
+                            className="font-bold md:text-4xl text-2xl"
+                        >
+                            أهداف الدار
+                        </h2>
+                        <p
+                            className="text-black md:text-xl text-bace"
+                            style={{ lineHeight: "40px" }}
+                        >
+                            – اطلاق المهارات الإبداعية ورعاية المواهب الأدبية
+                            الفريدة في مصر والعالم العربي وتشجيع جميع المهتمين
+                            من كل الأعمار للمشاركة.
+                            <br />
+                            – نشر الأعمال الأدبية الراقية ذات الجودة العالية
+                            والناتج المعرفي والثقافي الخلاق .<br />
+                            – تسليط الضوء على الرموز الأدبية والأعمال التراثية
+                            القديمة وتقديمها بطريقة تناسب الجيل الحالي ،
+                            والاحتفاء باللغة والثقافة والتاريخ المصري والعربي.
+                            <br />– نقل المعرفة والمساهمة في حركة الترجمة للكتب
+                            والإبداعات العلمية والفكرية من وإلى العربية .
+                        </p>
+                    </div>
+                    <div>
+                        <img
+                            src="/assets/images/goles.jpg"
+                            className="w-lg-auto w-75 mx-auto d-block"
+                        />
+                    </div>
+                </div>
+            </section>
 
-      <section
-        className="container lg:px-5 px-2 flex gap-5 lg:flex-row flex-col lg:justify-around justify-center"
-        style={{paddingBlock: "60px", marginBottom: "80px"}}
-      >
-        <div
-          style={{
-                    border: "1px solid #096d7154",
-                    padding: "40px",
-                    borderRadius: "20px",
-                    textAlign: "center",
-                    boxShadow: "0px 0px 14.5px 2px rgba(203, 203, 203, 0.25)"
-                  }}
-                
-          className="w-9/12 lg:w-3/12 mx-auto"
-        >
-          <h2
-            style={{fontSize: "40px", color: "#096d71", marginBottom: "10px"}}
-            className='font-bold'
-          >
-            رسالة الدار
-          </h2>
-          <p className="text-black">
-            تقديم جميع خدمات النشر من إصدار وطباعة وتوزيع بجودة عالية
-            وباستخدام أفضل تقنيات النشر
-          </p>
-        </div>
+            <section
+                className="container lg:px-5 px-2 flex gap-5 lg:flex-row flex-col lg:justify-around justify-center"
+                style={{ paddingBlock: "60px", marginBottom: "80px" }}
+            >
+                <div
+                    style={{
+                        border: "1px solid #096d7154",
+                        padding: "40px",
+                        borderRadius: "20px",
+                        textAlign: "center",
+                        boxShadow:
+                            "0px 0px 14.5px 2px rgba(203, 203, 203, 0.25)",
+                    }}
+                    className="w-9/12 lg:w-3/12 mx-auto"
+                >
+                    <h2
+                        style={{ color: "#096d71", marginBottom: "10px" }}
+                        className="font-bold md:text-4xl text-2xl"
+                    >
+                        رسالة الدار
+                    </h2>
+                    <p className="text-black">
+                        تقديم جميع خدمات النشر من إصدار وطباعة وتوزيع بجودة
+                        عالية وباستخدام أفضل تقنيات النشر
+                    </p>
+                </div>
 
-        <div
-          style={{
-                    border: "1px solid #096d7154",
-                    padding: "40px",
-                    borderRadius: "20px",
-                    textAlign: "center",
-                    boxShadow: "0px 0px 14.5px 2px rgba(203, 203, 203, 0.25)"
-                }}
-          className="w-9/12 lg:w-3/12 mx-auto"
-        >
-          <h2
-            style={{fontSize: "40px", color: "#096d71", marginBottom: "10px"}}
-            className='font-bold'
-          >
-            رؤية الدار
-          </h2>
-          <p className="text-black">
-            أن تكون دار طفرة للنشر والتوزيع خطوة على طريق الثقافة
-            والتنوير والتنمية والتطوير .. وأن تكون وسيط بين الكاتب
-            الموهوب والقارئ الباحث عن المعرفة .
-          </p>
-        </div>
-      </section>
+                <div
+                    style={{
+                        border: "1px solid #096d7154",
+                        padding: "40px",
+                        borderRadius: "20px",
+                        textAlign: "center",
+                        boxShadow:
+                            "0px 0px 14.5px 2px rgba(203, 203, 203, 0.25)",
+                    }}
+                    className="w-9/12 lg:w-3/12 mx-auto"
+                >
+                    <h2
+                        style={{
+                            color: "#096d71",
+                            marginBottom: "10px",
+                        }}
+                        className="font-bold md:text-4xl text-2xl"
+                    >
+                        رؤية الدار
+                    </h2>
+                    <p className="text-black">
+                        أن تكون دار طفرة للنشر والتوزيع خطوة على طريق الثقافة
+                        والتنوير والتنمية والتطوير .. وأن تكون وسيط بين الكاتب
+                        الموهوب والقارئ الباحث عن المعرفة .
+                    </p>
+                </div>
+            </section>
 
-
-
-
-
-
-
-
-
-
-
-
-        {/* /************************************ */}
-      {/* <section className="py-16 bg-gray-50">
+            {/* /************************************ */}
+            {/* <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-8 mb-16">
             <div className="lg:w-1/2">
@@ -181,8 +181,8 @@ const FeaturedSections: React.FC = () => {
           </div>
         </div>
       </section> */}
-    </>
-  );
+        </>
+    );
 };
 
 export default FeaturedSections;

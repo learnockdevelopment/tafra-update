@@ -59,17 +59,16 @@ const Store = () => {
             <div className="container">
                 <h2
                     style={{
-                        fontSize: "40px",
                         color: "#096d71",
                         marginBottom: "10px",
                     }}
-                    className="font-bold mt-16"
+                    className="font-bold mt-16 md:text-4xl text-2xl"
                 >
                     ابحث عن كتاب
                 </h2>
 
-                <div className="flex gap-2 mb-10">
-                    <div className="w-1/2 relative">
+                <div className="flex gap-2 mb-10 md:flex-row flex-col">
+                    <div className="md:w-1/2 w-full relative">
                         <input
                             placeholder="اسم الكتاب..."
                             className="px-4 py-3 border border-[#777] w-full rounded-md hover:outline-none"
@@ -77,7 +76,7 @@ const Store = () => {
                         <Search className="!size-6 absolute top-0 left-0 translate-x-[50%] translate-y-[50%] text-[#777]" />
                     </div>
                     <Select>
-                        <SelectTrigger className="w-[280px] !px-4 !py-3 !h-auto rtl !text-[#777] !border-[#777]">
+                        <SelectTrigger className="md:w-[280px] w-full !px-4 !py-3 !h-auto rtl !text-[#777] !border-[#777]">
                             <SelectValue placeholder="المؤلف" />
                         </SelectTrigger>
                         <SelectContent className="rtl">
@@ -90,11 +89,10 @@ const Store = () => {
 
                 <h3
                     style={{
-                        fontSize: "28px",
                         color: "#1B1B1B",
-                        marginBottom: "10px",
+                        marginBottom: "30px",
                     }}
-                    className="font-600 mt-20"
+                    className="font-600 mt-20 md:text-3xl text-xl"
                 >
                     احدث الكتب
                 </h3>
