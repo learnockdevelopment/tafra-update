@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { BookOpen, ShoppingCart, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -6,10 +6,12 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
+    DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
+import { useBooks } from "@/context/addToCart";
 
 interface HeaderProps {
     cartItemsCount?: number;
@@ -32,6 +34,8 @@ const Header: React.FC<HeaderProps> = ({
         }
     });
 
+    const { books, removeBook } = useBooks();
+
     return (
         <header
             className={`${
@@ -50,14 +54,63 @@ const Header: React.FC<HeaderProps> = ({
                 <div className="flex items-center justify-between">
                     {/* Right Navigation */}
                     <nav className="flex items-center gap-20">
-                        <Button variant="ghost" size="sm" className="relative">
-                            <ShoppingCart className="!size-6 text-secound" />
-                            {cartItemsCount > 0 && (
-                                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                                    {cartItemsCount}
-                                </span>
-                            )}
-                        </Button>
+                        <DropdownMenu dir="rtl">
+                            <DropdownMenuTrigger asChild>
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="relative"
+                                >
+                                    <ShoppingCart className="!size-6 text-secound" />
+                                    {cartItemsCount > 0 ||
+                                        (books.length > 0 && (
+                                            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                                                {cartItemsCount || books.length}
+                                            </span>
+                                        ))}
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="ms-6">
+                                <DropdownMenuLabel className="text-2xl font-bold">
+                                    العربة
+                                </DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                {books.length > 0 ? (
+                                    books.map((book) => (
+                                        <Fragment key={book.id}>
+                                            <DropdownMenuItem className=" justify-between gap-2 ">
+                                                <img
+                                                    src={book.image}
+                                                    alt={book.title}
+                                                    className="w-16"
+                                                />
+                                                <div>
+                                                    <h4 className="text-md font-bold">
+                                                        {book.title}
+                                                    </h4>
+                                                    <p>{book.price} EGP</p>
+                                                </div>
+
+                                                <Button
+                                                    onClick={() =>
+                                                        removeBook(book.id)
+                                                    }
+                                                    className="bg-red-500 hover:bg-secound text-white w-fit rounded-sm text-sm"
+                                                    size="sm"
+                                                >
+                                                    ازالة{" "}
+                                                </Button>
+                                            </DropdownMenuItem>
+                                        </Fragment>
+                                    ))
+                                ) : (
+                                    <DropdownMenuItem className="text-center font-bold">
+                                        العربة فارغة
+                                    </DropdownMenuItem>
+                                )}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+
                         <Link
                             to="/"
                             className={`${
@@ -149,7 +202,7 @@ const Header: React.FC<HeaderProps> = ({
                     />
                 </div>
                 <div className="flex gap-6">
-                    <div className="tp-header-action-item d-flex tp-header-action-item-search">
+                    {/* <div className="tp-header-action-item d-flex tp-header-action-item-search">
                         <button
                             type="button"
                             className="tp-header-action-btn tp-search-open-btn"
@@ -170,11 +223,69 @@ const Header: React.FC<HeaderProps> = ({
                                 />
                             </svg>
                         </button>
-                    </div>
+                    </div> */}
+                    <DropdownMenu dir="rtl">
+                        <DropdownMenuTrigger asChild>
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                className="relative p-0"
+                            >
+                                <ShoppingCart className="!size-6 text-secound" />
+                                {cartItemsCount > 0 ||
+                                    (books.length > 0 && (
+                                        <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                                            {cartItemsCount || books.length}
+                                        </span>
+                                    ))}
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="ms-6">
+                            <DropdownMenuLabel className="text-2xl font-bold">
+                                العربة
+                            </DropdownMenuLabel>
+                            <DropdownMenuSeparator />
+                            {books.length > 0 ? (
+                                books.map((book) => (
+                                    <Fragment key={book.id}>
+                                        <DropdownMenuItem className=" justify-between gap-2 flex-col items-start">
+                                            <img
+                                                src={book.image}
+                                                alt={book.title}
+                                                className="w-16"
+                                            />
+                                            <div>
+                                                <h4 className="text-md font-bold">
+                                                    {book.title}
+                                                </h4>
+                                                <p>{book.price} EGP</p>
+                                            </div>
+
+                                            <Button
+                                                onClick={() =>
+                                                    removeBook(book.id)
+                                                }
+                                                className="bg-red-500 hover:bg-secound text-white w-fit rounded-sm text-sm"
+                                                size="sm"
+                                            >
+                                                ازالة{" "}
+                                            </Button>
+                                        </DropdownMenuItem>
+                                        <DropdownMenuSeparator />
+                                    </Fragment>
+                                ))
+                            ) : (
+                                <DropdownMenuItem className="text-center font-bold">
+                                    العربة فارغة
+                                </DropdownMenuItem>
+                            )}
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+
                     <div className="tp-header-action-item d-flex m-0 tp-header-action-item-search">
                         <button
                             type="button"
-                            className="tp-header-action-btn tp-search-open-btn"
+                            className="tp-header-action-btn tp-search-open-btn h-full"
                         >
                             <svg
                                 width="20"
@@ -207,7 +318,7 @@ const Header: React.FC<HeaderProps> = ({
                         <DropdownMenuTrigger>
                             <button
                                 type="button"
-                                className="tp-header-action-btn tp-search-open-btn"
+                                className="tp-header-action-btn tp-search-open-btn h-full"
                             >
                                 <svg
                                     width="24px"

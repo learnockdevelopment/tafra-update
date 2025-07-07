@@ -10,24 +10,30 @@ import {
 import BookCard from "@/components/BookCard";
 import { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
+import { useBooks } from "@/context/addToCart";
 
 interface Book {
     id: number;
     title: string;
-    price: string;
+    price: string | number;
     originalPrice: number;
     cover: string;
     category: string;
     isbn13: string;
-    image: string;
+    image?: string;
 }
 
 const Store = () => {
     const [books, setBooks] = useState<Book[]>([]);
     const [loading, setLoading] = useState(true);
+    const { addBook, books: cartBooks, removeBook } = useBooks();
 
     // Fetch books data
     useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
         const fetchBooks = async () => {
             try {
                 const response = await fetch(
@@ -96,17 +102,45 @@ const Store = () => {
                 <div className="flex flex-wrap justify-between xl:*:w-[23%] md:*:w-[48%] *:w-full gap-x-8 gap-y-16">
                     {books.map((book) => (
                         <BookCard
+                            key={book.isbn13}
                             book={{
                                 id: book.isbn13,
                                 title: book.title,
-                                price: Number(book.price.replace("$", "")),
+                                price:
+                                    typeof book.price === "string"
+                                        ? Number(book.price.replace("$", ""))
+                                        : book.price,
                                 originalPrice: 200,
                                 cover: book.image,
                                 category: "",
                                 isbn13: book.isbn13,
+                                image: book.image,
                             }}
                             onAddToCart={(book) => {
-                                console.log(book);
+                                addBook({
+                                    id: book.isbn13,
+                                    title: book.title,
+                                    price:
+                                        typeof book.price === "string"
+                                            ? Number(
+                                                  (
+                                                      book.price as string
+                                                  ).replace("$", "")
+                                              )
+                                            : book.price,
+                                    originalPrice: 200,
+                                    cover: book.cover ?? book.image,
+                                    category: "",
+                                    isbn13: book.isbn13,
+                                    image: book.image,
+                                });
+                            }}
+                            inCart={
+                                cartBooks.find((b) => b.id === book.isbn13) !==
+                                undefined
+                            }
+                            onRemoveFromCart={(book) => {
+                                removeBook(book.id);
                             }}
                         />
                     ))}

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 interface Book {
+    image?: string;
     id: string;
     title: string;
     price: number;
@@ -16,9 +17,16 @@ interface Book {
 interface BookCardProps {
     book: Book;
     onAddToCart: (book: Book) => void;
+    onRemoveFromCart: (book: Book) => void;
+    inCart: boolean;
 }
 
-const BookCard: React.FC<BookCardProps> = ({ book, onAddToCart }) => {
+const BookCard: React.FC<BookCardProps> = ({
+    book,
+    onAddToCart,
+    inCart,
+    onRemoveFromCart,
+}) => {
     const discount = Math.round(
         ((book.originalPrice - book.price) / book.originalPrice) * 100
     );
@@ -61,13 +69,23 @@ const BookCard: React.FC<BookCardProps> = ({ book, onAddToCart }) => {
                         التصنيف: {book.category || "Uncategorized"}
                     </span>
                 </div>
-                <Button
-                    onClick={() => onAddToCart(book)}
-                    className="bg-[#096D71] hover:bg-secound text-white w-full rounded-full"
-                    size="sm"
-                >
-                    أضف الي السلة
-                </Button>
+                {!inCart ? (
+                    <Button
+                        onClick={() => onAddToCart(book)}
+                        className="bg-[#096D71] hover:bg-secound text-white w-full rounded-full"
+                        size="sm"
+                    >
+                        أضف الي السلة
+                    </Button>
+                ) : (
+                    <Button
+                        onClick={() => onRemoveFromCart(book)}
+                        className="bg-red-500 hover:bg-secound text-white w-full rounded-full"
+                        size="sm"
+                    >
+                        الازالة من السلة
+                    </Button>
+                )}
             </div>
         </div>
     );
