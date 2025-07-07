@@ -13,22 +13,24 @@ import {
 import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
 import BookCard from "@/components/BookCard";
+import { useBooks } from "@/context/addToCart";
 
 export default function BookDetails() {
     const [book, setBook] = useState(null);
     const [loading, setLoading] = useState(true);
     const { bookId } = useParams();
+    const { addBook, books: cartBooks, removeBook } = useBooks();
 
     // Fetch books data
     useEffect(() => {
         const fetchBooks = async () => {
             try {
                 const response = await fetch(
-                    `https://api.itbook.store/1.0/books/${bookId}`
+                    `https://tafra.learnock.com/api/products/${bookId}`
                 );
                 const data = await response.json();
-                setBook(data);
-                console.log(data);
+                setBook(data.data);
+                console.log(data.data);
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching books:", error);
@@ -48,10 +50,10 @@ export default function BookDetails() {
         const fetchBooks = async () => {
             try {
                 const response = await fetch(
-                    "https://api.itbook.store/1.0/new"
+                    "https://tafra.learnock.com/api/products"
                 );
                 const data = await response.json();
-                setBooks(data?.books);
+                setBooks(data?.data);
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching books:", error);
@@ -74,48 +76,49 @@ export default function BookDetails() {
 
                         <BreadcrumbSeparator className="rotate-180" />
                         <BreadcrumbItem>
-                            <BreadcrumbPage>{book?.title}</BreadcrumbPage>
+                            <BreadcrumbPage>{book?.name}</BreadcrumbPage>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
 
                 <div className="flex gap-2 items-center md:flex-row flex-col md:*:w-1/2 *:w-full">
-                    <div className="flex">
-                        <div>
+                    <div className="flex gap-2">
+                        <div className="w-1/4 flex flex-col gap-2">
                             <img
-                                src={book?.image}
+                                src={`https://tafra.learnock.com/storage/${book?.image}`}
                                 alt="book image"
-                                className="w-40"
+                                className="w-full grow"
                             />
                             <img
-                                src={book?.image}
+                                src={`https://tafra.learnock.com/storage/${book?.image}`}
                                 alt="book image"
-                                className="w-40"
+                                className="w-full grow"
                             />
                         </div>
-                        <div>
+                        <div className="w-3/4">
                             <img
-                                src={book?.image}
+                                src={`https://tafra.learnock.com/storage/${book?.image}`}
                                 alt="book image"
-                                className="w-full h-full"
+                                className="w-80 h-80"
                             />
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
                         <h2 className="text-3xl font-bold mb-2 text-[#1B1B1B] line-clamp-2 grow">
-                            {book?.title}
+                            {book?.name}
                         </h2>
 
-                        <h2 className="text-xl font-bold mb-2 text-[#777] line-clamp-2 grow">
-                            المؤلف: {book?.authors}
-                        </h2>
+                        {/* <h2 className="text-xl font-bold mb-2 text-[#777] line-clamp-2 grow">
+                            المؤلف: {book?.authors || book?.name}
+                        </h2> */}
 
                         <div className="flex items-center justify-start gap-5 mb-2">
                             <span className="text-sm text-[#777]">
-                                رمز المنتج: {book?.isbn13}
+                                رمز المنتج: {book?.sku}
                             </span>
                             <span className="text-sm text-[#777]">
-                                التصنيف: {book?.category || "Uncategorized"}
+                                التصنيف:{" "}
+                                {book?.category?.name || "Uncategorized"}
                             </span>
                         </div>
 
@@ -127,9 +130,16 @@ export default function BookDetails() {
                                 <Star className="fill-[gold]" />
                                 <Star className="fill-[gold]" />
                             </span>
-                            <span className="text-sm text-[#777]">
-                                {book?.rating} (50)
-                            </span>
+                            {book?.average_rating ? (
+                                <span className="text-sm text-[#777]">
+                                    {book?.average_rating} (
+                                    {book?.reviews?.length})
+                                </span>
+                            ) : (
+                                <span className="text-sm text-[#777]">
+                                    لا يوجد تقييم
+                                </span>
+                            )}
                             <Button
                                 // onClick={() => onAddToCart(book)}
                                 className="text-[#096D71] font-bold text-lg"
@@ -146,13 +156,13 @@ export default function BookDetails() {
                                 </span>
                                 <span className="text-2xl font-bold text-[#096D71]">
                                     {Number(
-                                        book?.price?.replace("$", "")
+                                        book?.final_price?.replace("$", "")
                                     )?.toFixed(2)}{" "}
                                     EGP
                                 </span>
                                 {discount > 0 && (
                                     <span className="text-xl text-secound line-through">
-                                        {book?.originalPrice?.toFixed(2) || 200}{" "}
+                                        {Number(book?.price)?.toFixed(2) || 200}{" "}
                                         EGP
                                     </span>
                                 )}
@@ -177,17 +187,42 @@ export default function BookDetails() {
                     <div className="flex flex-wrap justify-between xl:*:w-[23%] md:*:w-[48%] *:w-full gap-x-8 gap-y-16">
                         {books.slice(0, 4).map((book) => (
                             <BookCard
+                                key={book.id}
                                 book={{
-                                    id: book.isbn13,
-                                    title: book.title,
-                                    price: Number(book.price.replace("$", "")),
-                                    originalPrice: 200,
+                                    id: book.id,
+                                    name: book.name,
+                                    final_price:
+                                        typeof book.final_price === "string"
+                                            ? Number(book.final_price)
+                                            : book.final_price,
+                                    price: book.price,
                                     cover: book.image,
-                                    category: "",
-                                    isbn13: book.isbn13,
+                                    category: book.category.name,
+                                    sku: book.sku,
+                                    image: book.image,
                                 }}
                                 onAddToCart={(book) => {
-                                    console.log(book);
+                                    addBook({
+                                        id: book.id + "",
+                                        name: book.name,
+                                        final_price:
+                                            typeof book.final_price === "string"
+                                                ? Number(book.final_price)
+                                                : book.final_price,
+                                        price: book.price,
+                                        cover: book.cover ?? book.image,
+                                        category: book.category,
+                                        sku: book.sku,
+                                        image: book.image,
+                                    });
+                                }}
+                                inCart={
+                                    cartBooks.find(
+                                        (b) => b.id === book.id + ""
+                                    ) !== undefined
+                                }
+                                onRemoveFromCart={(book) => {
+                                    removeBook(book.id + "");
                                 }}
                             />
                         ))}

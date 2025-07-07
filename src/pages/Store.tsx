@@ -14,12 +14,12 @@ import { useBooks } from "@/context/addToCart";
 
 interface Book {
     id: number;
-    title: string;
-    price: string | number;
-    originalPrice: number;
+    name: string;
+    final_price: string | number;
+    price: number;
     cover: string;
-    category: string;
-    isbn13: string;
+    category: { name: string };
+    sku: string;
     image?: string;
 }
 
@@ -35,13 +35,24 @@ const Store = () => {
             behavior: "smooth",
         });
         const fetchBooks = async () => {
+            // try {
+            //     const response = await fetch(
+            //         "https://api.itbook.store/1.0/new"
+            //     );
+            //     const data = await response.json();
+            //     setBooks(data?.books);
+            //     setLoading(false);
+            // } catch (error) {
+            //     console.error("Error fetching books:", error);
+
+            //     setLoading(false);
+            // }
             try {
                 const response = await fetch(
-                    "https://api.itbook.store/1.0/new"
+                    "https://tafra.learnock.com/api/products"
                 );
                 const data = await response.json();
-                setBooks(data?.books);
-                console.log(data?.books);
+                setBooks(data.data);
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching books:", error);
@@ -97,48 +108,44 @@ const Store = () => {
                     احدث الكتب
                 </h3>
 
-                <div className="flex flex-wrap justify-between xl:*:w-[23%] md:*:w-[48%] *:w-full gap-x-8 gap-y-16">
+                <div className="flex flex-wrap xl:*:w-[23%] md:*:w-[48%] *:w-full gap-x-8 gap-y-16">
                     {books.map((book) => (
                         <BookCard
-                            key={book.isbn13}
+                            key={book.id}
                             book={{
-                                id: book.isbn13,
-                                title: book.title,
-                                price:
-                                    typeof book.price === "string"
-                                        ? Number(book.price.replace("$", ""))
-                                        : book.price,
-                                originalPrice: 200,
+                                id: book.id,
+                                name: book.name,
+                                final_price:
+                                    typeof book.final_price === "string"
+                                        ? Number(book.final_price)
+                                        : book.final_price,
+                                price: book.price,
                                 cover: book.image,
-                                category: "",
-                                isbn13: book.isbn13,
+                                category: book.category.name,
+                                sku: book.sku,
                                 image: book.image,
                             }}
                             onAddToCart={(book) => {
                                 addBook({
-                                    id: book.isbn13,
-                                    title: book.title,
-                                    price:
-                                        typeof book.price === "string"
-                                            ? Number(
-                                                  (
-                                                      book.price as string
-                                                  ).replace("$", "")
-                                              )
-                                            : book.price,
-                                    originalPrice: 200,
+                                    id: book.id + "",
+                                    name: book.name,
+                                    final_price:
+                                        typeof book.final_price === "string"
+                                            ? Number(book.final_price)
+                                            : book.final_price,
+                                    price: book.price,
                                     cover: book.cover ?? book.image,
-                                    category: "",
-                                    isbn13: book.isbn13,
+                                    category: book.category,
+                                    sku: book.sku,
                                     image: book.image,
                                 });
                             }}
                             inCart={
-                                cartBooks.find((b) => b.id === book.isbn13) !==
+                                cartBooks.find((b) => b.id === book.id + "") !==
                                 undefined
                             }
                             onRemoveFromCart={(book) => {
-                                removeBook(book.id);
+                                removeBook(book.id + "");
                             }}
                         />
                     ))}

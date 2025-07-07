@@ -8,12 +8,12 @@ import {
 import { toast } from "@/hooks/use-toast";
 interface Book {
     id: string;
-    title: string;
+    name: string;
     price: number;
-    originalPrice: number;
+    final_price: number;
     cover: string;
     category: string;
-    isbn13: string;
+    sku: string;
     image: string;
 }
 
@@ -40,7 +40,7 @@ export const BooksProvider = ({ children }: { children: ReactNode }) => {
         setBooks([...books, newBook]);
         toast({
             title: "تمت الإضافة",
-            description: `تم إضافة "${book.title}" إلى السلة`,
+            description: `تم إضافة "${book.name}" إلى السلة`,
         });
     };
 
