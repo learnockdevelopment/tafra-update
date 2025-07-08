@@ -30,10 +30,6 @@ const Store = () => {
 
     // Fetch books data
     useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
         const fetchBooks = async () => {
             // try {
             //     const response = await fetch(
@@ -60,6 +56,11 @@ const Store = () => {
                 setLoading(false);
             }
         };
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
 
         fetchBooks();
     }, []);

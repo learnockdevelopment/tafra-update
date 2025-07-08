@@ -39,6 +39,11 @@ export default function BookDetails() {
             }
         };
 
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+
         fetchBooks();
     }, [bookId]);
     const discount = 10;

@@ -70,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({
                                         ))}
                                 </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent className="ms-6">
+                            <DropdownMenuContent className="ms-6 min-w-96">
                                 <DropdownMenuLabel className="text-2xl font-bold">
                                     العربة
                                 </DropdownMenuLabel>
@@ -79,16 +79,18 @@ const Header: React.FC<HeaderProps> = ({
                                     books.map((book) => (
                                         <Fragment key={book.id}>
                                             <DropdownMenuItem className=" justify-between gap-2 ">
-                                                <img
-                                                    src={book.image}
-                                                    alt={book.title}
-                                                    className="w-16"
-                                                />
-                                                <div>
-                                                    <h4 className="text-md font-bold">
-                                                        {book.title}
-                                                    </h4>
-                                                    <p>{book.price} EGP</p>
+                                                <div className="flex items-center gap-2">
+                                                    <img
+                                                        src={`https://tafra.learnock.com/storage/${book.image}`}
+                                                        alt={book.name}
+                                                        className="w-16"
+                                                    />
+                                                    <div>
+                                                        <h4 className="text-md font-bold">
+                                                            {book.name}
+                                                        </h4>
+                                                        <p>{book.price} EGP</p>
+                                                    </div>
                                                 </div>
 
                                                 <Button
@@ -104,7 +106,7 @@ const Header: React.FC<HeaderProps> = ({
                                         </Fragment>
                                     ))
                                 ) : (
-                                    <DropdownMenuItem className="text-center font-bold">
+                                    <DropdownMenuItem className="text-center font-bold block">
                                         العربة فارغة
                                     </DropdownMenuItem>
                                 )}
@@ -240,7 +242,7 @@ const Header: React.FC<HeaderProps> = ({
                                     ))}
                             </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent className="ms-6">
+                        <DropdownMenuContent className="me-6 min-w-64">
                             <DropdownMenuLabel className="text-2xl font-bold">
                                 العربة
                             </DropdownMenuLabel>
@@ -249,16 +251,18 @@ const Header: React.FC<HeaderProps> = ({
                                 books.map((book) => (
                                     <Fragment key={book.id}>
                                         <DropdownMenuItem className=" justify-between gap-2 flex-col items-start">
-                                            <img
-                                                src={book.image}
-                                                alt={book.title}
-                                                className="w-16"
-                                            />
-                                            <div>
-                                                <h4 className="text-md font-bold">
-                                                    {book.title}
-                                                </h4>
-                                                <p>{book.price} EGP</p>
+                                            <div className="flex items-center gap-2">
+                                                <img
+                                                    src={`https://tafra.learnock.com/storage/${book.image}`}
+                                                    alt={book.name}
+                                                    className="w-16"
+                                                />
+                                                <div>
+                                                    <h4 className="text-md font-bold">
+                                                        {book.name}
+                                                    </h4>
+                                                    <p>{book.price} EGP</p>
+                                                </div>
                                             </div>
 
                                             <Button
@@ -275,7 +279,7 @@ const Header: React.FC<HeaderProps> = ({
                                     </Fragment>
                                 ))
                             ) : (
-                                <DropdownMenuItem className="text-center font-bold">
+                                <DropdownMenuItem className="text-center font-bold block">
                                     العربة فارغة
                                 </DropdownMenuItem>
                             )}
