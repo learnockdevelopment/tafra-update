@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const Events = () => {
     return (
@@ -7,22 +7,25 @@ const Events = () => {
                 marginTop: 60,
                 paddingTop: 60,
                 paddingBottom: 120,
-                backgroundColor: "#096d71"
+                backgroundColor: "#096d71",
             }}
         >
             <div className="container flex flex-col justify-center sm:items-center items-start">
                 <div
                     className="rounded-full d-block"
                     style={{
-                        width: 180,
-                        height: 180,
+                        width: 140,
+                        height: 140,
                         backgroundColor: "white",
                         overflow: "hidden",
                         padding: 10,
-                        marginBottom: 20
+                        marginBottom: 20,
                     }}
                 >
-                    <img src="/assets/images/logo.jpg" className="w-full h-full" />
+                    <img
+                        src="/assets/images/logo-1.jpg"
+                        className="w-full h-full"
+                    />
                 </div>
                 <a href="#" className="flex gap-2 items-center text-white">
                     <svg
@@ -65,29 +68,53 @@ const Events = () => {
                         listStyle: "none",
                         marginTop: 20,
                         paddingBottom: 60,
-                        borderBottom: "1px solid #ffbe00"
+                        borderBottom: "1px solid #ffbe00",
                     }}
                 >
                     <li>
-                        <Link to="/" className="font-700 hover:text-secound font-medium">الرئيسية</Link>
+                        <Link
+                            to="/"
+                            className="font-700 hover:text-secound font-medium"
+                        >
+                            الرئيسية
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/events" className="font-700 hover:text-secound font-medium">الفاعليات</Link>
+                        <Link
+                            to="/events"
+                            className="font-700 hover:text-secound font-medium"
+                        >
+                            الفاعليات
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/store" className="font-700 hover:text-secound font-medium">المتجر</Link>
+                        <Link
+                            to="/store"
+                            className="font-700 hover:text-secound font-medium"
+                        >
+                            المتجر
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/releases" className="font-700 hover:text-secound font-medium">إصدارات</Link>
+                        <Link
+                            to="/releases"
+                            className="font-700 hover:text-secound font-medium"
+                        >
+                            إصدارات
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/contact" className="font-700 hover:text-secound font-medium">اتصل بنا</Link>
+                        <Link
+                            to="/contact"
+                            className="font-700 hover:text-secound font-medium"
+                        >
+                            اتصل بنا
+                        </Link>
                     </li>
                 </ul>
             </div>
         </footer>
+    );
+};
 
-    )
-}
-
-export default Events
+export default Events;

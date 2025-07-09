@@ -46,8 +46,8 @@ const Header: React.FC<HeaderProps> = ({
                     : ""
             } ${
                 fixed
-                    ? "fixed top-0 z-50"
-                    : "py-6 bg-[#096D71] text-white relative z-50"
+                    ? "lg:py-2 fixed top-0 z-50"
+                    : "lg:py-10 bg-[#096D71] text-white relative z-50"
             } transition-all duration-300 w-full`}
         >
             <div className="container lg:block hidden mx-auto px-4">
@@ -141,14 +141,19 @@ const Header: React.FC<HeaderProps> = ({
 
                     {/* Centered Logo */}
                     <div
+                        // className={`${
+                        //     fixed
+                        //         ? "translate-x-[40%]"
+                        //         : "absolute translate-x-[-25%] top-[-10px] left-[50%]"
+                        // } flex items-center gap-2 rounded-full overflow-hidden aspect-square translate-y-[-10px] w-40`}
                         className={`${
                             fixed
                                 ? "translate-x-[40%]"
-                                : "absolute translate-x-[-25%] top-[-10px] left-[50%]"
-                        } flex items-center gap-2 rounded-full overflow-hidden aspect-square translate-y-[-10px] w-40`}
+                                : "absolute translate-x-[-25%] left-[50%]"
+                        } flex items-center gap-2 overflow-hidden aspect-square w-24 bg-white p-1.5 rounded-full`}
                     >
                         <img
-                            src="/assets/images/logo.jpg"
+                            src="/assets/images/logo-1.jpg"
                             className="w-full h-full "
                         />
                     </div>
@@ -188,19 +193,16 @@ const Header: React.FC<HeaderProps> = ({
             </div>
             <div className="container lg:hidden flex items-center justify-between">
                 <div
-                    className="rounded-full"
+                    className="rounded-full aspect-square w-20 bg-white p-4"
                     style={{
-                        width: "100px",
-                        height: "100px",
-                        backgroundColor: "white",
                         overflow: "hidden",
                         padding: "10px",
                         margin: "10px",
                     }}
                 >
                     <img
-                        src="/assets/images/logo.jpg"
-                        className="w-full h-full scale-150 translate-y-2"
+                        src="/assets/images/logo-1.jpg"
+                        className="w-full h-full translate-y-2"
                     />
                 </div>
                 <div className="flex gap-6">
