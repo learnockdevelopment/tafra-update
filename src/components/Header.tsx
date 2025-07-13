@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { BookOpen, ShoppingCart, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import PaymentModal from "./PaymentModel";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
 import { useBooks } from "@/context/addToCart";
+import { useAuth } from "@/context/AuthContext";
+
 
 interface HeaderProps {
     cartItemsCount?: number;
@@ -24,7 +26,27 @@ const Header: React.FC<HeaderProps> = ({
     fixed = true,
     active = "/",
 }) => {
+const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const { books, removeBook } = useBooks();
+    const { user } = useAuth();
+    // Check if the user is logged in
+    const isLoggedIn = !!user;
+    // Set the initial state based on scroll position
+    
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 100);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+    const handlePaymentSuccess = (paymentData: any) => {
+        console.log('تم الدفع بنجاح:', paymentData);
+        // Handle successful payment (redirect, show confirmation, etc.)
+        setIsPaymentModalOpen(false);
+    };
 
     window.addEventListener("scroll", () => {
         if (window.scrollY > 100) {
@@ -34,7 +56,6 @@ const Header: React.FC<HeaderProps> = ({
         }
     });
 
-    const { books, removeBook } = useBooks();
 
     return (
         <header
@@ -70,47 +91,57 @@ const Header: React.FC<HeaderProps> = ({
                                         ))}
                                 </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent className="ms-6 min-w-96">
-                                <DropdownMenuLabel className="text-2xl font-bold">
-                                    العربة
-                                </DropdownMenuLabel>
-                                <DropdownMenuSeparator />
-                                {books.length > 0 ? (
-                                    books.map((book) => (
-                                        <Fragment key={book.id}>
-                                            <DropdownMenuItem className=" justify-between gap-2 ">
-                                                <div className="flex items-center gap-2">
-                                                    <img
-                                                        src={`https://tafra.learnock.com/storage/${book.image}`}
-                                                        alt={book.name}
-                                                        className="w-16"
-                                                    />
-                                                    <div>
-                                                        <h4 className="text-md font-bold">
-                                                            {book.name}
-                                                        </h4>
-                                                        <p>{book.price} EGP</p>
-                                                    </div>
-                                                </div>
-
-                                                <Button
-                                                    onClick={() =>
-                                                        removeBook(book.id)
-                                                    }
-                                                    className="bg-red-500 hover:bg-secound text-white w-fit rounded-sm text-sm"
-                                                    size="sm"
-                                                >
-                                                    ازالة{" "}
-                                                </Button>
-                                            </DropdownMenuItem>
-                                        </Fragment>
-                                    ))
-                                ) : (
-                                    <DropdownMenuItem className="text-center font-bold block">
-                                        العربة فارغة
-                                    </DropdownMenuItem>
-                                )}
-                            </DropdownMenuContent>
+                          <DropdownMenuContent className="ms-6 min-w-96">
+  <DropdownMenuLabel className="text-2xl font-bold">
+    العربة
+  </DropdownMenuLabel>
+  <DropdownMenuSeparator />
+  {books.length > 0 ? (
+    <>
+      {books.map((book) => (
+        <DropdownMenuItem 
+          key={book.id} 
+          className="justify-between gap-2"
+        >
+          <div className="flex items-center gap-2">
+            <img
+              src={`https://tafra.learnock.com/storage/${book.image}`}
+              alt={book.name}
+              className="w-16"
+            />
+            <div>
+              <h4 className="text-md font-bold">
+                {book.name}
+              </h4>
+              <p>{book.price} EGP</p>
+            </div>
+          </div>
+          <Button
+            onClick={() => removeBook(book.id)}
+            className="bg-red-500 hover:bg-secound text-white w-fit rounded-sm text-sm"
+            size="sm"
+          >
+            ازالة
+          </Button>
+        </DropdownMenuItem>
+      ))}
+      <DropdownMenuSeparator />
+      <DropdownMenuItem className="p-0">
+        <Button
+          onClick={() => setIsPaymentModalOpen(true)}
+          className="w-full bg-green-600 hover:bg-green-700 text-white py-2"
+        >
+          شراء الكل ({books.length})
+        </Button>
+        
+      </DropdownMenuItem>
+    </>
+  ) : (
+    <DropdownMenuItem className="text-center font-bold block">
+      العربة فارغة
+    </DropdownMenuItem>
+  )}
+</DropdownMenuContent>
                         </DropdownMenu>
 
                         <Link
@@ -129,6 +160,7 @@ const Header: React.FC<HeaderProps> = ({
                         >
                             الفاعليات
                         </Link>
+                        
                         <Link
                             to="/store"
                             className={`${
@@ -177,6 +209,19 @@ const Header: React.FC<HeaderProps> = ({
                             >
                                 اتصل بنا
                             </Link>
+                            {
+                            isLoggedIn && (
+                                <Link
+                                to="/profile"
+                                className={`${
+                                    active === "profile" && "text-secound"
+                                } font-700 hover:text-secound font-medium`}
+                            >
+                                حسابي
+                            </Link>
+                            ) 
+                        }
+                            
                         </nav>
 
                         <div className="flex items-center gap-2">
@@ -278,6 +323,15 @@ const Header: React.FC<HeaderProps> = ({
                                             </Button>
                                         </DropdownMenuItem>
                                         <DropdownMenuSeparator />
+                                        <DropdownMenuItem className="text-right">
+                                            <Button
+                                               onClick={() =>
+                                                    window.location.href = "/store"}
+                                                className="w-full text-center"
+                                            >
+                                                شراء
+                                            </Button>
+                                        </DropdownMenuItem>
                                     </Fragment>
                                 ))
                             ) : (
@@ -285,6 +339,7 @@ const Header: React.FC<HeaderProps> = ({
                                     العربة فارغة
                                 </DropdownMenuItem>
                             )}
+
                         </DropdownMenuContent>
                     </DropdownMenu>
 
@@ -385,6 +440,11 @@ const Header: React.FC<HeaderProps> = ({
                     </DropdownMenu>
                 </div>
             </div>
+          <PaymentModal
+                isOpen={isPaymentModalOpen}
+                onClose={() => setIsPaymentModalOpen(false)}
+                books={books || []} // Ensure books is always an array
+            />
         </header>
     );
 };
