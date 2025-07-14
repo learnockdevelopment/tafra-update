@@ -209,7 +209,7 @@ const Header: React.FC<HeaderProps> = ({
                             >
                                 اتصل بنا
                             </Link>
-                            {isLoggedIn && (
+                            {isLoggedIn ? (
                                 <Link
                                     to="/profile"
                                     className={`${
@@ -218,6 +218,26 @@ const Header: React.FC<HeaderProps> = ({
                                 >
                                     حسابي
                                 </Link>
+                            ) : (
+                                <div className="flex gap-8">
+                                    <Link
+                                        to="/login"
+                                        className={`${
+                                            active === "login" && "text-secound"
+                                        } font-700 hover:text-secound font-medium`}
+                                    >
+                                        تسجيل دخول
+                                    </Link>
+                                    <Link
+                                        to="/signup"
+                                        className={`${
+                                            active === "signup" &&
+                                            "text-secound"
+                                        } font-700 hover:text-secound font-medium`}
+                                    >
+                                        انشاء حساب
+                                    </Link>
+                                </div>
                             )}
                         </nav>
 
